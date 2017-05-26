@@ -20,80 +20,84 @@ def dwnld():  # bunch of if/else statements to decide which program to download
         if str(coin.get()) == "933" or str(coin.get()) == "930" or str(coin.get()) == "9":
             print("memes")
 
-        elif str(coin.get()) == "902":
+        elif str(coin.get()) == "ETh":
             urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
 
-        elif str(coin.get()) == "813":
+        elif str(coin.get()) == "DASH":
             urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
 
-        elif str(coin.get()) == "712":
+        elif str(coin.get()) == "ETC":
             urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
 
-        elif str(coin.get()) == "613":
+        elif str(coin.get()) == "XMR":
             urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
 
-        elif str(coin.get()) == "511":
+        elif str(coin.get()) == "ZEC":
             urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
 
-        elif str(coin.get()) == "1001":
+        elif str(coin.get()) == "SC":
             instructions.configure(
                 text="Load the IPA file into Cydia Impactor and then use Cydia Impactor to sideload the app",
                 wraplength=350)
             urllib.request.urlretrieve("", "")
 
     else:  # OS X programs
-        if str(coin.get()) == "933":
-            print("memes")
+        if str(coin.get()) == "GAME":
+            urllib.request.urlretrieve("", "")
+            instructions.configure(
+                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                wraplength=350)
 
-        elif str(coin.get()) == "1001":
+        elif str(coin.get()) == "ETh":
+            urllib.request.urlretrieve("", "")
+            instructions.configure(
+                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                wraplength=350)
+
+        elif str(coin.get()) == "DASH":
+            urllib.request.urlretrieve("", "")
+            instructions.configure(
+                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                wraplength=350)
+
+        elif str(coin.get()) == "ETC":
+            urllib.request.urlretrieve("", "")
+            instructions.configure(
+                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                wraplength=350)
+
+        elif str(coin.get()) == "XMR":
+            urllib.request.urlretrieve("", "")
+            instructions.configure(
+                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                wraplength=350)
+
+        elif str(coin.get()) == "ZEC":
+            urllib.request.urlretrieve("", "")
+            instructions.configure(
+                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                wraplength=350)
+
+        elif str(coin.get()) == "SC":
             instructions.configure(
                 text="Load the IPA file into Cydia Impactor and then use Cydia Impactor to sideload the app",
                 wraplength=350)
             urllib.request.urlretrieve("", "")
-
-        elif str(coin.get()) == "902":
-            instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                wraplength=350)
-            urllib.request.urlretrieve("", "")
-
-        elif str(coin.get()) == "813":
-            urllib.request.urlretrieve("", "")
-            instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                wraplength=350)
-
-        elif str(coin.get()) == "712":
-            urllib.request.urlretrieve("", "")
-            instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                wraplength=350)
-
-        elif str(coin.get()) == "613":
-            urllib.request.urlretrieve("", "")
-            instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                wraplength=350)
-        elif str(coin.get()) == "511":
-            urllib.request.urlretrieve("", "")
-            instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                wraplength=350)
 
 
 pleaselbl = tkinter.Label(window, text="Input the currency symbol for the coin you want to mine",
