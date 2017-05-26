@@ -21,34 +21,31 @@ def dwnld():  # bunch of if/else statements to decide which program to download
             print("memes")
 
         elif str(coin.get()) == "902":
-            urllib.request.urlretrieve("http://dl.pangu.25pp.com/jb/Pangu9_v1.3.2.exe", "Pangu9_v1.3.2.exe")
+            urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
 
         elif str(coin.get()) == "813":
-            urllib.request.urlretrieve("http://res.taig.com/installer/en/TaiGJBreak_EN_v245_5266.exe",
-                                       "TaiGJBreak_EN_v245_5266")
+            urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
 
         elif str(coin.get()) == "712":
-            urllib.request.urlretrieve("https://www.dropbox.com/s/4mgj37hernjn188/evasi0n7-win-1.0.7.zip?dl=1",
-                                       "evasi0n7-win-1.0.7.zip")
+            urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
 
         elif str(coin.get()) == "613":
-            urllib.request.urlretrieve("http://p0sixspwn.co/p0sixspwn-v1.0.8-win.zip", "p0sixspwn-v1.0.8-win.zip")
+            urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
 
         elif str(coin.get()) == "511":
-            urllib.request.urlretrieve("hhttps://sites.google.com/site/greenpois0nabsinthe/"
-                                       "absinthe-win-2.0.4.zip?attredirects=0&d=1", "absinthe-win-2.0.4.zip")
+            urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
@@ -57,7 +54,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
             instructions.configure(
                 text="Load the IPA file into Cydia Impactor and then use Cydia Impactor to sideload the app",
                 wraplength=350)
-            urllib.request.urlretrieve("https://yalu.qwertyoruiop.com/yalu102_beta7.ipa", "yalu102_beta7.ipa")
+            urllib.request.urlretrieve("", "")
 
     else:  # OS X programs
         if str(coin.get()) == "933":
@@ -67,37 +64,33 @@ def dwnld():  # bunch of if/else statements to decide which program to download
             instructions.configure(
                 text="Load the IPA file into Cydia Impactor and then use Cydia Impactor to sideload the app",
                 wraplength=350)
-            urllib.request.urlretrieve("https://yalu.qwertyoruiop.com/yalu102_beta7.ipa", "yalu102_beta7.ipa")
+            urllib.request.urlretrieve("", "")
 
         elif str(coin.get()) == "902":
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
-            urllib.request.urlretrieve("https://www.dropbox.com/s/d6rr4aa2obbvvnj/pangu9_mac_v1.1.1%202.dmg?dl=1",
-                                       "pangu9_mac_v1.1.1.dmg")
+            urllib.request.urlretrieve("", "")
 
         elif str(coin.get()) == "813":
-            urllib.request.urlretrieve("http://res.taig.com/installer/mac/TaiGjailbreak_V110.dmg",
-                                       "TaiGjailbreak_V110.dmg")
+            urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
 
         elif str(coin.get()) == "712":
-            urllib.request.urlretrieve("http://randomsite.com/file.gz", "file.gz")
+            urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
 
         elif str(coin.get()) == "613":
-            urllib.request.urlretrieve("http://posixspwndownload.com/downloads/p0sixspwn-v1.0.7-mac.zip",
-                                       "p0sixspwn-v1.0.7-mac.zip")
+            urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
         elif str(coin.get()) == "511":
-            urllib.request.urlretrieve("https://sites.google.com/site/greenpois0nabsinthe/"
-                                       "absinthe-mac-2.0.4.dmg?attredirects=0&d=1", "absinthe-mac-2.0.4.dmg")
+            urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
