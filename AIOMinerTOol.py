@@ -27,7 +27,8 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                 wraplength=350)
 
         elif str(coin.get()) == "DASH":
-            urllib.request.urlretrieve("", "")
+            urllib.request.urlretrieve("https://github.com/dashminer/dashminer/releases/download/2.1.1/DashMiner211x.zip"
+                                       , "DashMiner211x")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
@@ -54,7 +55,8 @@ def dwnld():  # bunch of if/else statements to decide which program to download
             instructions.configure(
                 text="Load the IPA file into Cydia Impactor and then use Cydia Impactor to sideload the app",
                 wraplength=350)
-            urllib.request.urlretrieve("", "")
+            urllib.request.urlretrieve("https://siamine.com/files/marlin/win64/marlin-1.0.0-win64.zip",
+                                       "marlin-1.0.0-win64.zip")
 
     else:  # OS X programs
         if str(coin.get()) == "GAME":
@@ -97,7 +99,8 @@ def dwnld():  # bunch of if/else statements to decide which program to download
             instructions.configure(
                 text="Load the IPA file into Cydia Impactor and then use Cydia Impactor to sideload the app",
                 wraplength=350)
-            urllib.request.urlretrieve("", "")
+            urllib.request.urlretrieve("https://siamine.com/files/marlin/linux-amd64/marlin-1.0.0-linux-amd64.tar.gz",
+                                       "marlin-1.0.0-linux-amd64.tar.gz")
 
 
 pleaselbl = tkinter.Label(window, text="Input the currency symbol for the coin you want to mine",
