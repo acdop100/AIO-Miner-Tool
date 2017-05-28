@@ -13,6 +13,7 @@ proc = "none"
 def infoupdate():  # updates the program with inputted information
     coinlbl.configure(text="Coin = " + coin.get())
 
+
 def savetofile():  # writes variables to the miner's config file
     savelbl.configure(text="Saved!")
     config = open("config.txt", 'a')
@@ -47,12 +48,19 @@ def dwnld():  # bunch of if/else statements to decide which program to download
         if str(coin.get()) == "NHM":  # NiceHashMiner
             urllib.request.urlretrieve("https://github.com/nicehash/NiceHashMiner/releases/download/1.7.5.12/"
                                        "NiceHashMiner_v1.7.5.12.zip", "NiceHashMiner_v1.7.5.12.zip")
-
-        elif str(coin.get()) == "ETH":  # Ethereum
-            urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
+
+        elif str(coin.get()) == "ETH":  # Ethereum
+            urllib.request.urlretrieve("https://github.com/nanopool/Claymore-Dual-Miner/releases/download/v9.4/"
+                                       "Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal.AMD.NVIDIA.GPU.Miner"
+                                       ".v9.4.zip", "Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal.AMD.NVIDIA."
+                                                    "GPU.Miner.v9.4.zip")
+            instructions.configure(
+                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                wraplength=350)
+
             poollbl.configure(text="Pool Address")
 
             walletlbl.configure(text="Wallet Address")
@@ -83,7 +91,10 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                 wraplength=350)
 
         elif str(coin.get()) == "ETC":  # Ethereum Classic :(
-            urllib.request.urlretrieve("", "")
+            urllib.request.urlretrieve("https://github.com/nanopool/Claymore-Dual-Miner/releases/download/v9.4/"
+                                       "Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal.AMD.NVIDIA.GPU.Miner"
+                                       ".v9.4.zip", "Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal.AMD.NVIDIA."
+                                                    "GPU.Miner.v9.4.zip")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
@@ -131,7 +142,22 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                     wraplength=350)
 
         elif str(coin.get()) == "ZEC":  # Zcash
-            urllib.request.urlretrieve("", "")
+            if proc == "AMD":
+                urllib.request.urlretrieve("https://github.com/nanopool/ClaymoreZECMiner/releases/download/v12.5/"
+                                       "Claymore.s.ZCash.AMD.GPU.Miner.v12.5.zip", "Claymore.s.ZCash.AMD.GPU.Miner"
+                                                                                   ".v12.5.zip")
+                instructions.configure(
+                    text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                    wraplength=350)
+
+            elif proc == "NVD":
+                urllib.request.urlretrieve("https://github.com/nanopool/ewbf-miner/releases/download/v0.3.3b/"
+                                           "Zec.miner.0.3.3b.zip", "KBZec.miner.0.3.3b.zip")
+                instructions.configure(
+                    text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                    wraplength=350)
+
+
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
@@ -167,7 +193,10 @@ def dwnld():  # bunch of if/else statements to decide which program to download
     else:  # Linux/GNU programs
 
         if str(coin.get()) == "ETH":
-            urllib.request.urlretrieve("", "")
+            urllib.request.urlretrieve("https://github.com/nanopool/Claymore-Dual-Miner/releases/download/v9.4/"
+                                       "Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal.AMD.NVIDIA.GPU.Miner.v9.4.-"
+                                       ".LINUX.tar.gz", "Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal"
+                                                        ".AMD.NVIDIA.GPU.Miner.v9.4.-.LINUX.tar.gz")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
@@ -200,7 +229,10 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                 wraplength=350)
 
         elif str(coin.get()) == "ETC":
-            urllib.request.urlretrieve("", "")
+            urllib.request.urlretrieve("https://github.com/nanopool/Claymore-Dual-Miner/releases/download/v9.4/"
+                                       "Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal.AMD.NVIDIA.GPU.Miner.v9.4.-"
+                                       ".LINUX.tar.gz", "Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal"
+                                                        ".AMD.NVIDIA.GPU.Miner.v9.4.-.LINUX.tar.gz")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
@@ -231,10 +263,23 @@ def dwnld():  # bunch of if/else statements to decide which program to download
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
-            
 
         elif str(coin.get()) == "ZEC":
-            urllib.request.urlretrieve("", "")
+            if proc == "AMD":
+                urllib.request.urlretrieve("https://github.com/nanopool/ClaymoreZECMiner/releases/download/v12.5/"
+                                           "Claymore.s.ZCash.AMD.GPU.Miner.v12.5.-.LINUX.tar.gz",
+                                           "Claymore.s.ZCash.AMD.GPU.Miner.v12.5.-.LINUX.tar.gz")
+                instructions.configure(
+                    text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                    wraplength=350)
+
+            elif proc == "NVD":
+                urllib.request.urlretrieve("https://github.com/nanopool/ewbf-miner/releases/download/v0.3.3b/"
+                                           "Zec.miner.0.3.3b.Linux.Bin.tar.gz", "Zec.miner.0.3.3b.Linux.Bin.tar.gz")
+                instructions.configure(
+                    text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                    wraplength=350)
+
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
