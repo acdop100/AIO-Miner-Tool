@@ -12,8 +12,6 @@ proc = "none"
 
 def infoupdate():  # updates the program with inputted information
     coinlbl.configure(text="Coin = " + coin.get())
-    proc = str(processor.get())
-
 
 def savetofile():  # writes variables to the miner's config file
     savelbl.configure(text="Saved!")
@@ -111,8 +109,8 @@ def dwnld():  # bunch of if/else statements to decide which program to download
 
             savebtn.configure(text="Save To Config.txt", command=savetofile)
 
-        elif str(coin.get()) == "XMR": # Monero
-            if proc == "CPU":
+        elif str(coin.get()) == "XMR":  # Monero
+            if str(processor.get()) == "CPU":
                 urllib.request.urlretrieve("https://github.com/jwinterm/monerospelunker/releases/download/0.1/"
                                            "monerospelunker_v01.zip", "monerospelunker_v01.zip")
                 instructions.configure(
@@ -132,7 +130,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                     text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                     wraplength=350)
 
-        elif str(coin.get()) == "ZEC": # Zcash
+        elif str(coin.get()) == "ZEC":  # Zcash
             urllib.request.urlretrieve("", "")
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
@@ -159,7 +157,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
 
             savebtn.configure(text="Save To Config.txt", command=savetofile)
 
-        elif str(coin.get()) == "SC": # Siacoin AKA SiaCloud
+        elif str(coin.get()) == "SC":  # Siacoin AKA SiaCloud
             instructions.configure(
                 text="Load the IPA file into Cydia Impactor and then use Cydia Impactor to sideload the app",
                 wraplength=350)
@@ -233,6 +231,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
+            
 
         elif str(coin.get()) == "ZEC":
             urllib.request.urlretrieve("", "")
@@ -307,7 +306,7 @@ dualwindow = tkinter.Entry(window)
 coinlbl = tkinter.Label(window, text="")
 coinwindow = tkinter.Entry(window)
 
-coinwalletlbl = tkinter.Label(window, text="]")
+coinwalletlbl = tkinter.Label(window, text="")
 coinwalletwindow = tkinter.Entry(window)
 
 coinpoollbl = tkinter.Label(window, text="")
