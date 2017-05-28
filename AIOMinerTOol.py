@@ -58,7 +58,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                                        ".v9.4.zip", "Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal.AMD.NVIDIA."
                                                     "GPU.Miner.v9.4.zip")
             instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                text="Drop the generated config file into the folder that the miner is in",
                 wraplength=350)
 
             poollbl.configure(text="Pool Address")
@@ -96,8 +96,9 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                                        ".v9.4.zip", "Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal.AMD.NVIDIA."
                                                     "GPU.Miner.v9.4.zip")
             instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                text="Drop the generated config file into the folder that the miner is in",
                 wraplength=350)
+
             poollbl.configure(text="Pool Address")
 
             walletlbl.configure(text="Wallet Address")
@@ -124,43 +125,28 @@ def dwnld():  # bunch of if/else statements to decide which program to download
             if str(processor.get()) == "CPU":
                 urllib.request.urlretrieve("https://github.com/jwinterm/monerospelunker/releases/download/0.1/"
                                            "monerospelunker_v01.zip", "monerospelunker_v01.zip")
-                instructions.configure(
-                    text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                    wraplength=350)
+
             elif proc == "AMD":
                 urllib.request.urlretrieve("https://github.com/fireice-uk/xmr-stak-amd/releases/download/"
                                            "v1.0.0-1.3.1/xmr-stak-amd-win64.zip", "xmr-stak-amd-win64.zip")
-                instructions.configure(
-                    text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                    wraplength=350)
-
             elif proc == "NVD":
                 urllib.request.urlretrieve("https://github.com/fireice-uk/xmr-stak-nvidia/releases/"
                                            "download/v1.1.1-1.4.0/xmr-stak-nvidia.zip", "xmr-stak-nvidia.zip")
-                instructions.configure(
-                    text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                    wraplength=350)
 
         elif str(coin.get()) == "ZEC":  # Zcash
             if proc == "AMD":
                 urllib.request.urlretrieve("https://github.com/nanopool/ClaymoreZECMiner/releases/download/v12.5/"
-                                       "Claymore.s.ZCash.AMD.GPU.Miner.v12.5.zip", "Claymore.s.ZCash.AMD.GPU.Miner"
-                                                                                   ".v12.5.zip")
-                instructions.configure(
-                    text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                    wraplength=350)
+                                           "Claymore.s.ZCash.AMD.GPU.Miner.v12.5.zip", "Claymore.s.ZCash.AMD.GPU.Miner"
+                                                                                       ".v12.5.zip")
 
             elif proc == "NVD":
                 urllib.request.urlretrieve("https://github.com/nanopool/ewbf-miner/releases/download/v0.3.3b/"
                                            "Zec.miner.0.3.3b.zip", "KBZec.miner.0.3.3b.zip")
-                instructions.configure(
-                    text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                    wraplength=350)
-
 
             instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                text="Drop the generated config file into the folder that the miner is in",
                 wraplength=350)
+
             poollbl.configure(text="Pool Address")
 
             walletlbl.configure(text="Wallet Address")
@@ -234,7 +220,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                                        ".LINUX.tar.gz", "Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal"
                                                         ".AMD.NVIDIA.GPU.Miner.v9.4.-.LINUX.tar.gz")
             instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                text="Drop the generated config file into the folder that the miner is in",
                 wraplength=350)
             poollbl.configure(text="Pool Address")
 
@@ -269,20 +255,15 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                 urllib.request.urlretrieve("https://github.com/nanopool/ClaymoreZECMiner/releases/download/v12.5/"
                                            "Claymore.s.ZCash.AMD.GPU.Miner.v12.5.-.LINUX.tar.gz",
                                            "Claymore.s.ZCash.AMD.GPU.Miner.v12.5.-.LINUX.tar.gz")
-                instructions.configure(
-                    text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                    wraplength=350)
 
             elif proc == "NVD":
                 urllib.request.urlretrieve("https://github.com/nanopool/ewbf-miner/releases/download/v0.3.3b/"
                                            "Zec.miner.0.3.3b.Linux.Bin.tar.gz", "Zec.miner.0.3.3b.Linux.Bin.tar.gz")
-                instructions.configure(
-                    text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                    wraplength=350)
 
             instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
+                text="Drop the generated config file into the folder that the miner is in",
                 wraplength=350)
+
             poollbl.configure(text="Pool Address")
 
             walletlbl.configure(text="Wallet Address")
