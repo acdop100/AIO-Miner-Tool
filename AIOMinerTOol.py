@@ -4,7 +4,7 @@ import urllib.request
 
 window = tkinter.Tk()
 window.title("Acdop100 & ExpertDash's AIO Miner tool")
-window.geometry("420x850")
+window.geometry("420x800")
 
 
 def infoupdate():  # updates the program with inputted information
@@ -86,6 +86,29 @@ def labelsia():
     savebtn.configure(text="Save To Config.txt", command=savetosia)
 
 
+def labeldash():
+    poollbl.configure(text="Pool Address")
+
+    walletlbl.configure(text="Wallet/Worker Address")
+
+    pswdlbl.configure(text="Pool Password")
+
+    savelbl.configure(text="Ready So Save")
+
+    savebtn.configure(text="Save To Config.txt", command=savetodash)
+
+
+def savetodash():
+    savelbl.configure(text="Saved!")
+    config = open("config.txt", 'a')
+    ethpool = poolwindow.get()
+    ethwallet = walletwindow.get()
+    dashword = pswdwindow.get()
+    config.write("-o " + ethpool + "\n")
+    config.write("-u " + ethwallet + "\n")
+    config.write("-p " + dashword + "\n")
+
+
 def dwnld():  # bunch of if/else statements to decide which program to download
     coin2lbl.configure(text="Downloading!")
     gpulbl.configure(text="Tool(s) will download to the same directory as this tool")
@@ -114,6 +137,8 @@ def dwnld():  # bunch of if/else statements to decide which program to download
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
+
+            labeldash()
 
         elif str(coin.get()) == "ETC":  # Ethereum Classic :(
             urllib.request.urlretrieve("https://github.com/nanopool/Claymore-Dual-Miner/releases/download/v9.4/"
