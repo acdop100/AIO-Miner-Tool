@@ -4,14 +4,15 @@ import urllib.request
 
 window = tkinter.Tk()
 window.title("Acdop100 & ExpertDash's AIO Miner tool")
-window.geometry("380x830")
+window.geometry("420x850")
 
 print("test")
 proc = "none"
 
 
 def infoupdate():  # updates the program with inputted information
-    coinlbl.configure(text="Coin = " + coin.get())
+    coin2lbl.configure(text="Coin = " + coin.get())
+    gpulbl.configure(text="Processor type = " + processor.get())
 
 
 def savetofile():  # writes variables to the miner's config file
@@ -42,8 +43,8 @@ def savetofile():  # writes variables to the miner's config file
 
 
 def dwnld():  # bunch of if/else statements to decide which program to download
-    coinlbl.configure(text="Downloading!")
-    oslbl.configure(text="Tool(s) will download to the same directory as this tool")
+    coin2lbl.configure(text="Downloading!")
+    gpulbl.configure(text="Tool(s) will download to the same directory as this tool")
     if os.name == 'nt':  # Windows programs
         if str(coin.get()) == "NHM":  # NiceHashMiner
             urllib.request.urlretrieve("https://github.com/nicehash/NiceHashMiner/releases/download/1.7.5.12/"
@@ -126,20 +127,21 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                 urllib.request.urlretrieve("https://github.com/jwinterm/monerospelunker/releases/download/0.1/"
                                            "monerospelunker_v01.zip", "monerospelunker_v01.zip")
 
-            elif proc == "AMD":
+            elif str(processor.get()) == "AMD":
                 urllib.request.urlretrieve("https://github.com/fireice-uk/xmr-stak-amd/releases/download/"
                                            "v1.0.0-1.3.1/xmr-stak-amd-win64.zip", "xmr-stak-amd-win64.zip")
-            elif proc == "NVD":
+            elif str(processor.get()) == "NVD":
                 urllib.request.urlretrieve("https://github.com/fireice-uk/xmr-stak-nvidia/releases/"
                                            "download/v1.1.1-1.4.0/xmr-stak-nvidia.zip", "xmr-stak-nvidia.zip")
 
         elif str(coin.get()) == "ZEC":  # Zcash
-            if proc == "AMD":
+            if str(processor.get()) == "AMD":
                 urllib.request.urlretrieve("https://github.com/nanopool/ClaymoreZECMiner/releases/download/v12.5/"
                                            "Claymore.s.ZCash.AMD.GPU.Miner.v12.5.zip", "Claymore.s.ZCash.AMD.GPU.Miner"
                                                                                        ".v12.5.zip")
+                print("3")
 
-            elif proc == "NVD":
+            elif str(processor.get()) == "NVD":
                 urllib.request.urlretrieve("https://github.com/nanopool/ewbf-miner/releases/download/v0.3.3b/"
                                            "Zec.miner.0.3.3b.zip", "KBZec.miner.0.3.3b.zip")
 
@@ -215,6 +217,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                 wraplength=350)
 
         elif str(coin.get()) == "ETC":
+
             urllib.request.urlretrieve("https://github.com/nanopool/Claymore-Dual-Miner/releases/download/v9.4/"
                                        "Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal.AMD.NVIDIA.GPU.Miner.v9.4.-"
                                        ".LINUX.tar.gz", "Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal"
@@ -251,12 +254,14 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                 wraplength=350)
 
         elif str(coin.get()) == "ZEC":
-            if proc == "AMD":
+
+            if str(processor.get()) == "AMD":
                 urllib.request.urlretrieve("https://github.com/nanopool/ClaymoreZECMiner/releases/download/v12.5/"
                                            "Claymore.s.ZCash.AMD.GPU.Miner.v12.5.-.LINUX.tar.gz",
                                            "Claymore.s.ZCash.AMD.GPU.Miner.v12.5.-.LINUX.tar.gz")
+                print("3")
 
-            elif proc == "NVD":
+            elif str(processor.get()) == 'NVD':
                 urllib.request.urlretrieve("https://github.com/nanopool/ewbf-miner/releases/download/v0.3.3b/"
                                            "Zec.miner.0.3.3b.Linux.Bin.tar.gz", "Zec.miner.0.3.3b.Linux.Bin.tar.gz")
 
@@ -308,8 +313,8 @@ coin = tkinter.Entry(window)
 processor = tkinter.Entry(window)
 updatebtn = tkinter.Button(window, text="Update coin info to program", command=infoupdate)
 
-coinlbl = tkinter.Label(window, text=" ")
-oslbl = tkinter.Label(window, text=" ")
+coin2lbl = tkinter.Label(window, text=" ")
+gpulbl = tkinter.Label(window, text=" ")
 downloadbtn = tkinter.Button(window, text="Download corresponding Tool", command=dwnld)
 
 instructions = tkinter.Label(window, text="Instructions will appear here")
@@ -353,8 +358,8 @@ please3lbl.pack()
 please4lbl.pack()
 processor.pack()
 updatebtn.pack()
-coinlbl.pack()
-oslbl.pack()
+coin2lbl.pack()
+gpulbl.pack()
 downloadbtn.pack()
 instructions.pack()
 poollbl.pack()
