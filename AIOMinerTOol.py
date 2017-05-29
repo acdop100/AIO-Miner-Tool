@@ -109,6 +109,29 @@ def savetodash():
     config.write("-p " + dashword + "\n")
 
 
+def labelxmr():
+    poollbl.configure(text="Pool Address")
+
+    walletlbl.configure(text="Wallet/Worker Address")
+
+    pswdlbl.configure(text="Pool Password")
+
+    savelbl.configure(text="Ready So Save")
+
+    savebtn.configure(text="Save To Config.txt", command=savetoxmr)
+
+
+def savetoxmr():
+    savelbl.configure(text="Saved!")
+    config = open("config.txt", 'a')
+    ethpool = poolwindow.get()
+    ethwallet = walletwindow.get()
+    xmrword = pswdwindow.get()
+    config.write('"pool_address" : ' + '"' + ethpool + '"' + "\n")
+    config.write('"wallet_address" : ' + '"' + ethwallet + '"' + "\n")
+    config.write('"pool_password" : ' + '"'  + xmrword + '"' + "\n")
+
+
 def dwnld():  # bunch of if/else statements to decide which program to download
     coin2lbl.configure(text="Downloading!")
     gpulbl.configure(text="Tool(s) will download to the same directory as this tool")
