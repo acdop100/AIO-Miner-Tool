@@ -6,9 +6,6 @@ window = tkinter.Tk()
 window.title("Acdop100 & ExpertDash's AIO Miner tool")
 window.geometry("420x850")
 
-print("test")
-proc = "none"
-
 
 def infoupdate():  # updates the program with inputted information
     coin2lbl.configure(text="Coin = " + coin.get())
@@ -42,6 +39,30 @@ def savetofile():  # writes variables to the miner's config file
         config.write("-mode 1" + "\n")
 
 
+def labelclay():
+    poollbl.configure(text="Pool Address")
+
+    walletlbl.configure(text="Wallet Address")
+
+    pswdlbl.configure(text="Pool Password")
+
+    templbl.configure(text="Target GPU Temperature")
+
+    duallbl.configure(text="Are You Dual Mining? (y/n)")
+
+    coinlbl.configure(text="If So, Which Coin?")
+
+    coinwalletlbl.configure(text="2nd Coin Wallet Address")
+
+    coinpoollbl.configure(text="2nd Coin Pool Address")
+
+    coinpswdlbl.configure(text="2nd Coin Pool Password")
+
+    savelbl.configure(text="Ready So Save")
+
+    savebtn.configure(text="Save To Config.txt", command=savetofile)
+
+
 def dwnld():  # bunch of if/else statements to decide which program to download
     coin2lbl.configure(text="Downloading!")
     gpulbl.configure(text="Tool(s) will download to the same directory as this tool")
@@ -62,27 +83,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                 text="Drop the generated config file into the folder that the miner is in",
                 wraplength=350)
 
-            poollbl.configure(text="Pool Address")
-
-            walletlbl.configure(text="Wallet Address")
-
-            pswdlbl.configure(text="Pool Password")
-
-            templbl.configure(text="Target GPU Temperature")
-
-            duallbl.configure(text="Are You Dual Mining? (y/n)")
-
-            coinlbl.configure(text="If So, Which Coin?")
-
-            coinwalletlbl.configure(text="2nd Coin Wallet Address")
-
-            coinpoollbl.configure(text="2nd Coin Pool Address")
-
-            coinpswdlbl.configure(text="2nd Coin Pool Password")
-
-            savelbl.configure(text="Ready So Save")
-
-            savebtn.configure(text="Save To Config.txt", command=savetofile)
+            labelclay()
 
         elif str(coin.get()) == "DASH":  # Dashcoin
             urllib.request.urlretrieve(
@@ -100,27 +101,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                 text="Drop the generated config file into the folder that the miner is in",
                 wraplength=350)
 
-            poollbl.configure(text="Pool Address")
-
-            walletlbl.configure(text="Wallet Address")
-
-            pswdlbl.configure(text="Pool Password")
-
-            templbl.configure(text="Target GPU Temperature")
-
-            duallbl.configure(text="Are You Dual Mining? (y/n)")
-
-            coinlbl.configure(text="If So, Which Coin?")
-
-            coinwalletlbl.configure(text="2nd Coin Wallet Address")
-
-            coinpoollbl.configure(text="2nd Coin Pool Address")
-
-            coinpswdlbl.configure(text="2nd Coin Pool Password")
-
-            savelbl.configure(text="Ready So Save")
-
-            savebtn.configure(text="Save To Config.txt", command=savetofile)
+            labelclay()
 
         elif str(coin.get()) == "XMR":  # Monero
             if str(processor.get()) == "CPU":
@@ -149,27 +130,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                 text="Drop the generated config file into the folder that the miner is in",
                 wraplength=350)
 
-            poollbl.configure(text="Pool Address")
-
-            walletlbl.configure(text="Wallet Address")
-
-            pswdlbl.configure(text="Pool Password")
-
-            templbl.configure(text="Target GPU Temperature")
-
-            duallbl.configure(text="Are You Dual Mining? (y/n)")
-
-            coinlbl.configure(text="If So, Which Coin?")
-
-            coinwalletlbl.configure(text="2nd Coin Wallet Address")
-
-            coinpoollbl.configure(text="2nd Coin Pool Address")
-
-            coinpswdlbl.configure(text="2nd Coin Pool Password")
-
-            savelbl.configure(text="Ready So Save")
-
-            savebtn.configure(text="Save To Config.txt", command=savetofile)
+            labelclay()
 
         elif str(coin.get()) == "SC":  # Siacoin AKA SiaCloud
             instructions.configure(
@@ -190,25 +151,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                 wraplength=350)
             poollbl.configure(text="Pool Address")
 
-            walletlbl.configure(text="Wallet Address")
-
-            pswdlbl.configure(text="Pool Password")
-
-            templbl.configure(text="Target GPU Temperature")
-
-            duallbl.configure(text="Are You Dual Mining? (y/n)")
-
-            coinlbl.configure(text="If So, Which Coin?")
-
-            coinwalletlbl.configure(text="2nd Coin Wallet Address")
-
-            coinpoollbl.configure(text="2nd Coin Pool Address")
-
-            coinpswdlbl.configure(text="2nd Coin Pool Password")
-
-            savelbl.configure(text="Ready So Save")
-
-            savebtn.configure(text="Save To Config.txt", command=savetofile)
+            labelclay()
 
         elif str(coin.get()) == "DASH":
             urllib.request.urlretrieve("", "")
@@ -225,27 +168,8 @@ def dwnld():  # bunch of if/else statements to decide which program to download
             instructions.configure(
                 text="Drop the generated config file into the folder that the miner is in",
                 wraplength=350)
-            poollbl.configure(text="Pool Address")
 
-            walletlbl.configure(text="Wallet Address")
-
-            pswdlbl.configure(text="Pool Password")
-
-            templbl.configure(text="Target GPU Temperature")
-
-            duallbl.configure(text="Are You Dual Mining? (y/n)")
-
-            coinlbl.configure(text="If So, Which Coin?")
-
-            coinwalletlbl.configure(text="2nd Coin Wallet Address")
-
-            coinpoollbl.configure(text="2nd Coin Pool Address")
-
-            coinpswdlbl.configure(text="2nd Coin Pool Password")
-
-            savelbl.configure(text="Ready So Save")
-
-            savebtn.configure(text="Save To Config.txt", command=savetofile)
+            labelclay()
 
         elif str(coin.get()) == "XMR":
             urllib.request.urlretrieve("", "")
@@ -269,27 +193,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                 text="Drop the generated config file into the folder that the miner is in",
                 wraplength=350)
 
-            poollbl.configure(text="Pool Address")
-
-            walletlbl.configure(text="Wallet Address")
-
-            pswdlbl.configure(text="Pool Password")
-
-            templbl.configure(text="Target GPU Temperature")
-
-            duallbl.configure(text="Are You Dual Mining? (y/n)")
-
-            coinlbl.configure(text="If So, Which Coin?")
-
-            coinwalletlbl.configure(text="2nd Coin Wallet Address")
-
-            coinpoollbl.configure(text="2nd Coin Pool Address")
-
-            coinpswdlbl.configure(text="2nd Coin Pool Password")
-
-            savelbl.configure(text="Ready So Save")
-
-            savebtn.configure(text="Save To Config.txt", command=savetofile)
+            labelclay()
 
         elif str(coin.get()) == "SC":
             instructions.configure(
@@ -299,7 +203,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                                        "marlin-1.0.0-linux-amd64.tar.gz")
 
 
-pleaselbl = tkinter.Label(window, text="Input the currency symbol for the coin you want to mine",
+pleaselbl = tkinter.Label(window, text="Input currency symbol for the coin you want mined",
                           font=("Helvetica", 18))
 please2lbl = tkinter.Label(window, text="For example, ETH for Ethereum or NHM for NiceHash Miner",
                            font=("Helvetica", 9))
