@@ -185,13 +185,14 @@ def dwnld():  # bunch of if/else statements to decide which program to download
             elif str(processor.get()) == "NVD":
                 urllib.request.urlretrieve("https://github.com/fireice-uk/xmr-stak-nvidia/releases/"
                                            "download/v1.1.1-1.4.0/xmr-stak-nvidia.zip", "xmr-stak-nvidia.zip")
+            labelxmr()
+
 
         elif str(coin.get()) == "ZEC":  # Zcash
             if str(processor.get()) == "AMD":
                 urllib.request.urlretrieve("https://github.com/nanopool/ClaymoreZECMiner/releases/download/v12.5/"
                                            "Claymore.s.ZCash.AMD.GPU.Miner.v12.5.zip", "Claymore.s.ZCash.AMD.GPU.Miner"
                                                                                        ".v12.5.zip")
-                print("3")
 
             elif str(processor.get()) == "NVD":
                 urllib.request.urlretrieve("https://github.com/nanopool/ewbf-miner/releases/download/v0.3.3b/"
@@ -230,6 +231,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
+            labeldash()
 
         elif str(coin.get()) == "ETC":
 
@@ -248,6 +250,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
             instructions.configure(
                 text="Open the app and follow the on-screen instructions. They're pretty straight forward",
                 wraplength=350)
+            labelxmr()
 
         elif str(coin.get()) == "ZEC":
 
