@@ -129,7 +129,7 @@ def savetoxmr():
     xmrword = pswdwindow.get()
     config.write('"pool_address" : ' + '"' + ethpool + '"' + "\n")
     config.write('"wallet_address" : ' + '"' + ethwallet + '"' + "\n")
-    config.write('"pool_password" : ' + '"'  + xmrword + '"' + "\n")
+    config.write('"pool_password" : ' + '"' + xmrword + '"' + "\n")
 
 
 def dwnld():  # bunch of if/else statements to decide which program to download
@@ -186,7 +186,6 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                 urllib.request.urlretrieve("https://github.com/fireice-uk/xmr-stak-nvidia/releases/"
                                            "download/v1.1.1-1.4.0/xmr-stak-nvidia.zip", "xmr-stak-nvidia.zip")
             labelxmr()
-
 
         elif str(coin.get()) == "ZEC":  # Zcash
             if str(processor.get()) == "AMD":
@@ -277,6 +276,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
             urllib.request.urlretrieve("https://siamine.com/files/marlin/linux-amd64/marlin-1.0.0-linux-amd64.tar.gz",
                                        "marlin-1.0.0-linux-amd64.tar.gz")
             labelsia()
+
 
 pleaselbl = tkinter.Label(window, text="Input currency symbol for the coin you want mined",
                           font=("Helvetica", 18))
