@@ -63,6 +63,29 @@ def labelclay():
     savebtn.configure(text="Save To Config.txt", command=savetofile)
 
 
+def savetosia():
+    savelbl.configure(text="Saved!")
+    config = open("start.bat", 'a')
+    ethpool = poolwindow.get()
+    ethwallet = walletwindow.get()
+    intensity = tempwindow.get()
+    config.write("-H " + ethpool + "\n")
+    config.write("-u " + ethwallet + "\n")
+    config.write("-I " + intensity + "\n")
+
+
+def labelsia():
+    poollbl.configure(text="Pool Address")
+
+    walletlbl.configure(text="Wallet/Worker Address")
+
+    templbl.configure(text="Target Work Intensity")
+
+    savelbl.configure(text="Ready So Save")
+
+    savebtn.configure(text="Save To Config.txt", command=savetosia)
+
+
 def dwnld():  # bunch of if/else statements to decide which program to download
     coin2lbl.configure(text="Downloading!")
     gpulbl.configure(text="Tool(s) will download to the same directory as this tool")
@@ -138,6 +161,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                 wraplength=350)
             urllib.request.urlretrieve("https://siamine.com/files/marlin/win64/marlin-1.0.0-win64.zip",
                                        "marlin-1.0.0-win64.zip")
+            labelsia()
 
     else:  # Linux/GNU programs
 
@@ -201,7 +225,7 @@ def dwnld():  # bunch of if/else statements to decide which program to download
                 wraplength=350)
             urllib.request.urlretrieve("https://siamine.com/files/marlin/linux-amd64/marlin-1.0.0-linux-amd64.tar.gz",
                                        "marlin-1.0.0-linux-amd64.tar.gz")
-
+            labelsia()
 
 pleaselbl = tkinter.Label(window, text="Input currency symbol for the coin you want mined",
                           font=("Helvetica", 18))
