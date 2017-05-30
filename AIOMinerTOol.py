@@ -1,356 +1,204 @@
 import tkinter
 import os
 import urllib.request
+import MinerUtils as mutils
 
+config = open("config.txt", 'a')
 window = tkinter.Tk()
 window.title("Acdop100 & ExpertDash's AIO Miner tool")
-window.geometry("380x830")
+window.geometry("620x830")
 
-print("test")
+mutils.setMainWindow(window)
+
+print("420 test it memescope dorito")
 proc = "none"
+standardInstructionsMessage = "Open the app and follow the on-screen instructions. They're pretty straight forward"
 
+# Updates the program with inputted information
+def infoupdate():  
+    coinLabel.configure(text="Coin = " + coinBox.get())
+    proc = str(processorBox.get())
 
-def infoupdate():  # updates the program with inputted information
-    coinlbl.configure(text="Coin = " + coin.get())
-    proc = str(processor.get())
+#Saves something to the config file
+def saveToConfig(txt): config.write("-" + txt + "\n")
 
+# Save an individual option to the config file
+def saveOptionToConfig(name, option): saveToConfig(name + " " + option.box.get())
 
-def savetofile():  # writes variables to the miner's config file
-    savelbl.configure(text="Saved!")
+# Writes variables to the miner's config file
+def savetofile():
     config = open("config.txt", 'a')
-    ethpool = poolwindow.get()
-    ethwallet = walletwindow.get()
-    ethpswd = pswdwindow.get()
-    temp = tempwindow.get()
-    dual = dualwindow.get()
-    dcoin = coinwindow.get()
-    dpool = coinpoolwindow.get()
-    dwal = coinwalletwindow.get()
-    dpswd = coinpswdwindow.get()
-    config.write("-epool " + ethpool + "\n")
-    config.write("-ewal " + ethwallet + "\n")
-    config.write("-epsw " + ethpswd + "\n")
-    config.write("-tt " + temp + "\n")
-    if dual == 'y':
-        config.write("-mode 0" + "\n")
-        config.write("-dcoin " + dcoin + "\n")
-        config.write("-dpool " + dpool + "\n")
-        config.write("-dwal " + dwal + "\n")
-        config.write("-dpswd " + dpswd + "\n")
+    isDual = dualOption.box.get() == 'y'
 
-    else:
-        config.write("-mode 1" + "\n")
+    saveOptionToConfig("epool", poolOption)
+    saveOptionToConfig("ewal", walletOption)
+    saveOptionToConfig("epsw", passwordOption)
+    saveOptionToConfig("tt", tempOption)
 
+    saveToConfig("mode 0" if isDual else "mode 1")
+    if isDual:
+        saveToConfig("mode 0")
+        saveOptionToConfig("dcoin", coinOption)
+        saveOptionToConfig("dpool", poolOption)
+        saveOptionToConfig("dwal", walletOption)
+        saveOptionToConfig("dpsw", coinPasswordOption)
 
-def dwnld():  # bunch of if/else statements to decide which program to download
-    coinlbl.configure(text="Downloading!")
-    oslbl.configure(text="Tool(s) will download to the same directory as this tool")
-    if os.name == 'nt':  # Windows programs
-        if str(coin.get()) == "NHM":  # NiceHashMiner
-            urllib.request.urlretrieve("https://github.com/nicehash/NiceHashMiner/releases/download/1.7.5.12/"
-                                       "NiceHashMiner_v1.7.5.12.zip", "NiceHashMiner_v1.7.5.12.zip")
+    saveOption.label.configure(text="Saved!")
 
-        elif str(coin.get()) == "ETH":  # Ethereum
-            urllib.request.urlretrieve("", "")
-            instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                wraplength=350)
-            poollbl.configure(text="Pool Address")
+# Configure options command
 
-            walletlbl.configure(text="Wallet Address")
+def configureOptions(pool, wallet, password, temperature, dual, coin, coinWallet, coinPool, coinPassword, save, saveButton, saveButtonCommand):
+    poolOption.label.configure(text=pool)
+    walletOption.label.configure(text=wallet)
+    pswdOption.label.configure(text=password)
+    tempOption.label.configure(text=temperature)
+    dualOption.label.configure(text=dual)
+    coinOption.label.configure(text=coin)
+    coinwalletOption.label.configure(text=coinWallet)
+    coinPoolOption.label.configure(text=coinPool)
+    coinPasswordOption.label.configure(text=coinPassword)
+    saveOption.label.configure(text=save)
+    saveButton.configure(text=saveButton, command=saveButtonCommand)
 
-            pswdlbl.configure(text="Pool Password")
+def downloadProgramForCoin(shouldConfigureOptions, url, name, wlength, instructions):
+     urllib.request.urlretrieve(url, name)
+     if(len(txt) > 0): instructionsLabel.configure(text=instructions, wraplength=wlength)
 
-            templbl.configure(text="Target GPU Temperature")
+#Returns true if the name matches the coin entered by the user
+def isCoin(name): return str(coinBox.get()) == name
 
-            duallbl.configure(text="Are You Dual Mining? (y/n)")
+# Bunch of if/else statements to decide which program to download
+def dwnld():
+    coinLabel.configure(text="Downloading!")
+    osLabel.configure(text="Tool(s) will download to the same directory as this tool")
 
-            coinlbl.configure(text="If So, Which Coin?")
+    shouldConfigureOptions = False
+    
+    # Windows programs
+    if os.name == 'nt':
+        # NiceHashMiner
+        if isCoin("NHM"):
+            shouldConfigureOptions = downloadProgramForCoin(
+                False,
+                "https://github.com/nicehash/NiceHashMiner/releases/download/1.7.5.12/NiceHashMiner_v1.7.5.12.zip",
+                "NiceHashMiner_v1.7.5.12.zip",
+                0,
+                ""
+            )
+        
+        # Ethereum
+        elif isCoin("ETH"): shouldConfigureOptions = downloadProgramForCoin(True, "", "", 350, standardInstructionsMessage)
 
-            coinwalletlbl.configure(text="2nd Coin Wallet Address")
-
-            coinpoollbl.configure(text="2nd Coin Pool Address")
-
-            coinpswdlbl.configure(text="2nd Coin Pool Password")
-
-            savelbl.configure(text="Ready So Save")
-
-            savebtn.configure(text="Save To Config.txt", command=savetofile)
-
-        elif str(coin.get()) == "DASH":  # Dashcoin
-            urllib.request.urlretrieve(
-                "https://github.com/dashminer/dashminer/releases/download/2.1.1/DashMiner211x.zip", "DashMiner211x")
-            instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                wraplength=350)
-
-        elif str(coin.get()) == "ETC":  # Ethereum Classic :(
-            urllib.request.urlretrieve("", "")
-            instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                wraplength=350)
-            poollbl.configure(text="Pool Address")
-
-            walletlbl.configure(text="Wallet Address")
-
-            pswdlbl.configure(text="Pool Password")
-
-            templbl.configure(text="Target GPU Temperature")
-
-            duallbl.configure(text="Are You Dual Mining? (y/n)")
-
-            coinlbl.configure(text="If So, Which Coin?")
-
-            coinwalletlbl.configure(text="2nd Coin Wallet Address")
-
-            coinpoollbl.configure(text="2nd Coin Pool Address")
-
-            coinpswdlbl.configure(text="2nd Coin Pool Password")
-
-            savelbl.configure(text="Ready So Save")
-
-            savebtn.configure(text="Save To Config.txt", command=savetofile)
-
-        elif str(coin.get()) == "XMR": # Monero
+        # Dashcoin
+        elif isCoin("DASH"):
+             shouldConfigureOptions = downloadProgramForCoin(
+                False,
+                "https://github.com/dashminer/dashminer/releases/download/2.1.1/DashMiner211x.zip",
+                "DashMiner211x",
+                350,
+                standardInstructionsMessage
+            )
+        
+        # Ethereum Classic :(
+        elif isCoin("ETC"): shouldConfigureOptions = downloadProgramForCoin(True, "", "", 350, standardInstructionsMessage)
+        
+        # Monero
+        elif isCoin("XMR"): 
+            subURL = ""
+            subName = ""
             if proc == "CPU":
-                urllib.request.urlretrieve("https://github.com/jwinterm/monerospelunker/releases/download/0.1/"
-                                           "monerospelunker_v01.zip", "monerospelunker_v01.zip")
-                instructions.configure(
-                    text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                    wraplength=350)
+                subURL = "https://github.com/jwinterm/monerospelunker/releases/download/0.1/monerospelunker_v01.zip"
+                subName = "monerospelunker_v01.zip"
             elif proc == "AMD":
-                urllib.request.urlretrieve("https://github.com/fireice-uk/xmr-stak-amd/releases/download/"
-                                           "v1.0.0-1.3.1/xmr-stak-amd-win64.zip", "xmr-stak-amd-win64.zip")
-                instructions.configure(
-                    text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                    wraplength=350)
-
+                subURL = "https://github.com/fireice-uk/xmr-stak-amd/releases/download/v1.0.0-1.3.1/xmr-stak-amd-win64.zip"
+                subName = "xmr-stak-amd-win64.zip"
             elif proc == "NVD":
-                urllib.request.urlretrieve("https://github.com/fireice-uk/xmr-stak-nvidia/releases/"
-                                           "download/v1.1.1-1.4.0/xmr-stak-nvidia.zip", "xmr-stak-nvidia.zip")
-                instructions.configure(
-                    text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                    wraplength=350)
-
-        elif str(coin.get()) == "ZEC": # Zcash
-            urllib.request.urlretrieve("", "")
-            instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                wraplength=350)
-            poollbl.configure(text="Pool Address")
-
-            walletlbl.configure(text="Wallet Address")
-
-            pswdlbl.configure(text="Pool Password")
-
-            templbl.configure(text="Target GPU Temperature")
-
-            duallbl.configure(text="Are You Dual Mining? (y/n)")
-
-            coinlbl.configure(text="If So, Which Coin?")
-
-            coinwalletlbl.configure(text="2nd Coin Wallet Address")
-
-            coinpoollbl.configure(text="2nd Coin Pool Address")
-
-            coinpswdlbl.configure(text="2nd Coin Pool Password")
-
-            savelbl.configure(text="Ready So Save")
-
-            savebtn.configure(text="Save To Config.txt", command=savetofile)
-
-        elif str(coin.get()) == "SC": # Siacoin AKA SiaCloud
-            instructions.configure(
-                text="Load the IPA file into Cydia Impactor and then use Cydia Impactor to sideload the app",
-                wraplength=350)
-            urllib.request.urlretrieve("https://siamine.com/files/marlin/win64/marlin-1.0.0-win64.zip",
-                                       "marlin-1.0.0-win64.zip")
-
-    else:  # Linux/GNU programs
-
-        if str(coin.get()) == "ETH":
-            urllib.request.urlretrieve("", "")
-            instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                wraplength=350)
-            poollbl.configure(text="Pool Address")
-
-            walletlbl.configure(text="Wallet Address")
-
-            pswdlbl.configure(text="Pool Password")
-
-            templbl.configure(text="Target GPU Temperature")
-
-            duallbl.configure(text="Are You Dual Mining? (y/n)")
-
-            coinlbl.configure(text="If So, Which Coin?")
-
-            coinwalletlbl.configure(text="2nd Coin Wallet Address")
-
-            coinpoollbl.configure(text="2nd Coin Pool Address")
-
-            coinpswdlbl.configure(text="2nd Coin Pool Password")
-
-            savelbl.configure(text="Ready So Save")
-
-            savebtn.configure(text="Save To Config.txt", command=savetofile)
-
-        elif str(coin.get()) == "DASH":
-            urllib.request.urlretrieve("", "")
-            instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                wraplength=350)
-
-        elif str(coin.get()) == "ETC":
-            urllib.request.urlretrieve("", "")
-            instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                wraplength=350)
-            poollbl.configure(text="Pool Address")
-
-            walletlbl.configure(text="Wallet Address")
-
-            pswdlbl.configure(text="Pool Password")
-
-            templbl.configure(text="Target GPU Temperature")
-
-            duallbl.configure(text="Are You Dual Mining? (y/n)")
-
-            coinlbl.configure(text="If So, Which Coin?")
-
-            coinwalletlbl.configure(text="2nd Coin Wallet Address")
-
-            coinpoollbl.configure(text="2nd Coin Pool Address")
-
-            coinpswdlbl.configure(text="2nd Coin Pool Password")
-
-            savelbl.configure(text="Ready So Save")
-
-            savebtn.configure(text="Save To Config.txt", command=savetofile)
-
-        elif str(coin.get()) == "XMR":
-            urllib.request.urlretrieve("", "")
-            instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                wraplength=350)
-
-        elif str(coin.get()) == "ZEC":
-            urllib.request.urlretrieve("", "")
-            instructions.configure(
-                text="Open the app and follow the on-screen instructions. They're pretty straight forward",
-                wraplength=350)
-            poollbl.configure(text="Pool Address")
-
-            walletlbl.configure(text="Wallet Address")
-
-            pswdlbl.configure(text="Pool Password")
-
-            templbl.configure(text="Target GPU Temperature")
-
-            duallbl.configure(text="Are You Dual Mining? (y/n)")
-
-            coinlbl.configure(text="If So, Which Coin?")
-
-            coinwalletlbl.configure(text="2nd Coin Wallet Address")
-
-            coinpoollbl.configure(text="2nd Coin Pool Address")
-
-            coinpswdlbl.configure(text="2nd Coin Pool Password")
-
-            savelbl.configure(text="Ready So Save")
-
-            savebtn.configure(text="Save To Config.txt", command=savetofile)
-
-        elif str(coin.get()) == "SC":
-            instructions.configure(
-                text="Load the IPA file into Cydia Impactor and then use Cydia Impactor to sideload the app",
-                wraplength=350)
-            urllib.request.urlretrieve("https://siamine.com/files/marlin/linux-amd64/marlin-1.0.0-linux-amd64.tar.gz",
-                                       "marlin-1.0.0-linux-amd64.tar.gz")
-
-
-pleaselbl = tkinter.Label(window, text="Input the currency symbol for the coin you want to mine",
-                          font=("Helvetica", 18))
-please2lbl = tkinter.Label(window, text="For example, ETH for Ethereum or NHM for NiceHash Miner",
-                           font=("Helvetica", 9))
-please5lbl = tkinter.Label(window, text="Some miners are windows only, if a program doesn't download switch coin",
-                           font=("Helvetica", 9))
-
-please3lbl = tkinter.Label(window, text="Are you mining on your CPU or GPU(s)?", font=("Helvetica", 18))
-please4lbl = tkinter.Label(window, text="Write CPU, or for GPU write AMD or NVD' ", font=("Helvetica", 9))
-
-coin = tkinter.Entry(window)
-processor = tkinter.Entry(window)
-updatebtn = tkinter.Button(window, text="Update coin info to program", command=infoupdate)
-
-coinlbl = tkinter.Label(window, text=" ")
-oslbl = tkinter.Label(window, text=" ")
-downloadbtn = tkinter.Button(window, text="Download corresponding Tool", command=dwnld)
-
-instructions = tkinter.Label(window, text="Instructions will appear here")
-
-poollbl = tkinter.Label(window, text="Configuration file creation will appear here")
-poolwindow = tkinter.Entry(window)
-
-walletlbl = tkinter.Label(window, text="")
-walletwindow = tkinter.Entry(window)
-
-pswdlbl = tkinter.Label(window, text="")
-pswdwindow = tkinter.Entry(window)
-
-templbl = tkinter.Label(window, text="")
-tempwindow = tkinter.Entry(window)
-
-duallbl = tkinter.Label(window, text="")
-dualwindow = tkinter.Entry(window)
-
-coinlbl = tkinter.Label(window, text="")
-coinwindow = tkinter.Entry(window)
-
-coinwalletlbl = tkinter.Label(window, text="]")
-coinwalletwindow = tkinter.Entry(window)
-
-coinpoollbl = tkinter.Label(window, text="")
-coinpoolwindow = tkinter.Entry(window)
-
-coinpswdlbl = tkinter.Label(window, text="")
-coinpswdwindow = tkinter.Entry(window)
-
-savelbl = tkinter.Label(window, text="")
-savewindow = tkinter.Entry(window)
-
-savebtn = tkinter.Button(window, text="When Config is filled above, Save To Config.txt", command=savetofile)
-
-pleaselbl.pack()
-please2lbl.pack()
-coin.pack()
-please3lbl.pack()
-please4lbl.pack()
-processor.pack()
-updatebtn.pack()
-coinlbl.pack()
-oslbl.pack()
-downloadbtn.pack()
-instructions.pack()
-poollbl.pack()
-poolwindow.pack()
-walletlbl.pack()
-walletwindow.pack()
-pswdlbl.pack()
-pswdwindow.pack()
-templbl.pack()
-tempwindow.pack()
-duallbl.pack()
-dualwindow.pack()
-coinlbl.pack()
-coinwindow.pack()
-coinwalletlbl.pack()
-coinwalletwindow.pack()
-coinpoollbl.pack()
-coinpoolwindow.pack()
-coinpswdlbl.pack()
-coinpswdwindow.pack()
-savelbl.pack()
-savebtn.pack()
-
+                subURL = "https://github.com/fireice-uk/xmr-stak-nvidia/releases/download/v1.1.1-1.4.0/xmr-stak-nvidia.zip"
+                subName = "xmr-stak-nvidia.zip"
+            shouldConfigureOptions = downloadProgramForCoin(
+                False,
+                subURL,
+                subNAME,
+                350,
+                standardInstructionsMessage
+            )
+        # Zcash
+        elif isCoin("ZEC"): shouldConfigureOptions = downloadProgramForCoin(True, "", "", 350, standardInstructionsMessage)
+        
+        # Siacoin AKA SiaCloud
+        elif isCoin("SC"):
+            shouldConfigureOptions = downloadProgramForCoin(
+                False,
+                "https://siamine.com/files/marlin/win64/marlin-1.0.0-win64.zip",
+                "marlin-1.0.0-win64.zip",
+                350,
+                standardInstructionsMessage
+            )
+
+    # Linux/GNU programs
+    else:  
+        if isCoin("ETH"): shouldConfigureOptions = downloadProgramForCoin(True, "", "", 350, standardInstructionsMessage)
+        elif isCoin("DASH"): shouldConfigureOptions = downloadProgramForCoin(True, "", "", 350, standardInstructionsMessage)
+        elif isCoin("ETC"): shouldConfigureOptions = downloadProgramForCoin(True, "", "", 350, standardInstructionsMessage)
+        elif isCoin("XMR"): shouldConfigureOptions = downloadProgramForCoin(True, "", "", 350, standardInstructionsMessage)
+        elif isCoin("ZEC"): shouldConfigureOptions = downloadProgramForCoin(True, "", "", 350, standardInstructionsMessage)
+
+        elif isCoin("SC"):
+            shouldConfigureOptions = downloadProgramForCoin(
+                True,
+                "https://siamine.com/files/marlin/linux-amd64/marlin-1.0.0-linux-amd64.tar.gz",
+                "marlin-1.0.0-linux-amd64.tar.gz",
+                350,
+                "Load the IPA file into Cydia Impactor and then use Cydia Impactor to sideload the app"
+            )
+
+    if(shouldConfigureOptions):
+        configureOptions(
+                "Pool Address",
+                "Wallet Address",
+                "Pool Password",
+                "Target GPU Temperature"
+                "Are You Dual Mining? (y/n)",
+                "If So, Which Coin?",
+                "2nd Coin Wallet Address",
+                "2nd Coin Pool Address",
+                "2nd Coin Pool Password",
+                "Ready So Save",
+                "Save To Config.txt",
+                savetofile
+            )
+
+#Info
+mutils.createLabelWithFont(("Helvetica", 18), "Input the currency symbol for the coin you want to mine")
+mutils.createLabelWithFont(("Helvetica", 9), "For example, ETH for Ethereum or NHM for NiceHash Miner")
+mutils.createLabelWithFont(("Helvetica", 9), "Some miners are windows only, if a program doesn't download switch coin")
+mutils.createLabelWithFont(("Helvetica", 18), "Are you mining on your CPU or GPU(s)?")
+mutils.createLabelWithFont(("Helvetica", 9), "Write CPU, or for GPU write AMD or NVD' ",)
+
+#<describe this alex>
+coinBox = mutils.createBox()
+processorBox = mutils.createBox()
+updateButton = mutils.createButton("Update coin info to program", infoupdate)
+coinLabel = mutils.createLabel(" ")
+osLabel = mutils.createLabel(" ")
+mutils.createButton("Download corresponding Tool", dwnld)
+instructionsLabel = mutils.createLabel("Instructions will appear here")
+
+#Mining Options
+poolOption = mutils.createOption("Configuration file creation will appear here")
+walletOption = mutils.createOption("Wallet")
+passwordOption = mutils.createOption("Password")
+tempOption = mutils.createOption("Temperature")
+dualOption = mutils.createOption("Dual")
+coinOption = mutils.createOption("Coin")
+coinWalletOption = mutils.createOption("Coin Wallet")
+coinPoolOption = mutils.createOption("Coin Pool")
+coinPasswordOption = mutils.createOption("Coin Password")
+saveOption = mutils.createOption("Save")
+
+#<describe this alex>
+saveButton = mutils.createButton("When Config is filled above, Save To Config.txt", savetofile)
+
+#Pack & Begin Update
+mutils.packAll()
 window.mainloop()
