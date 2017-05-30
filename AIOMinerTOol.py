@@ -167,7 +167,7 @@ def dwnld():
                 "Ready So Save",
                 "Save To Config.txt",
                 savetofile
-            )
+        )
 
 #Info
 mutils.createLabelWithFont(("Helvetica", 18), "Input the currency symbol for the coin you want to mine")
