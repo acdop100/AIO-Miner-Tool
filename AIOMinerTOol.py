@@ -16,7 +16,7 @@ standardInstructionsMessage = "Open the app and follow the on-screen instruction
 
 # Updates the program with inputted information
 def infoupdate():  
-    coinLabel.configure(text="Coin = " + coinBox.get())
+    coinLabel.configure(text="Coin = " + coinOption.box.get())
     proc = str(processorBox.get())
 
 #Saves something to the config file
@@ -47,25 +47,26 @@ def savetofile():
 
 # Configure options command
 
-def configureOptions(pool, wallet, password, temperature, dual, coin, coinWallet, coinPool, coinPassword, save, saveButton, saveButtonCommand):
+def configureOptions(pool, wallet, password, temperature, dual, coin, coinWallet, coinPool, coinPassword, save, saveButtonText, saveButtonCommand):
     poolOption.label.configure(text=pool)
     walletOption.label.configure(text=wallet)
-    pswdOption.label.configure(text=password)
+    passwordOption.label.configure(text=password)
     tempOption.label.configure(text=temperature)
     dualOption.label.configure(text=dual)
     coinOption.label.configure(text=coin)
-    coinwalletOption.label.configure(text=coinWallet)
+    coinWalletOption.label.configure(text=coinWallet)
     coinPoolOption.label.configure(text=coinPool)
     coinPasswordOption.label.configure(text=coinPassword)
     saveOption.label.configure(text=save)
-    saveButton.configure(text=saveButton, command=saveButtonCommand)
+    saveButton.configure(text=saveButtonText, command=saveButtonCommand)
 
 def downloadProgramForCoin(shouldConfigureOptions, url, name, wlength, instructions):
-     urllib.request.urlretrieve(url, name)
-     if(len(txt) > 0): instructionsLabel.configure(text=instructions, wraplength=wlength)
+     if(len(url) > 0 and len(name) > 0): urllib.request.urlretrieve(url, name)
+     if(len(instructions) > 0): instructionsLabel.configure(text=instructions, wraplength=wlength)
+     return shouldConfigureOptions
 
 #Returns true if the name matches the coin entered by the user
-def isCoin(name): return str(coinBox.get()) == name
+def isCoin(name): return str(coinOption.box.get()) == name
 
 # Bunch of if/else statements to decide which program to download
 def dwnld():
@@ -157,7 +158,7 @@ def dwnld():
                 "Pool Address",
                 "Wallet Address",
                 "Pool Password",
-                "Target GPU Temperature"
+                "Target GPU Temperature",
                 "Are You Dual Mining? (y/n)",
                 "If So, Which Coin?",
                 "2nd Coin Wallet Address",
@@ -176,16 +177,17 @@ mutils.createLabelWithFont(("Helvetica", 18), "Are you mining on your CPU or GPU
 mutils.createLabelWithFont(("Helvetica", 9), "Write CPU, or for GPU write AMD or NVD' ",)
 
 #<describe this alex>
-coinBox = mutils.createBox()
+cpuBox = mutils.createBox()
 processorBox = mutils.createBox()
 updateButton = mutils.createButton("Update coin info to program", infoupdate)
 coinLabel = mutils.createLabel(" ")
 osLabel = mutils.createLabel(" ")
 mutils.createButton("Download corresponding Tool", dwnld)
 instructionsLabel = mutils.createLabel("Instructions will appear here")
+mutils.createLabel("Configuration file creation will appear here")
 
 #Mining Options
-poolOption = mutils.createOption("Configuration file creation will appear here")
+poolOption = mutils.createOption("Pool")
 walletOption = mutils.createOption("Wallet")
 passwordOption = mutils.createOption("Password")
 tempOption = mutils.createOption("Temperature")
